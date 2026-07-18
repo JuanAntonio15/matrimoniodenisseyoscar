@@ -1,0 +1,75 @@
+@import '@fontsource/playfair-display/500-italic.css';
+@import '@fontsource/playfair-display/600.css';
+@import '@fontsource/playfair-display/600-italic.css';
+@import '@fontsource/playfair-display/700.css';
+@import '@fontsource/cinzel/500.css';
+@import '@fontsource/cinzel/600.css';
+@import '@fontsource/cinzel-decorative/700.css';
+@import '@fontsource/amatic-sc/700.css';
+@import '@fontsource/special-elite';
+@import '@fontsource/eb-garamond/400.css';
+@import '@fontsource/eb-garamond/400-italic.css';
+@import '@fontsource/eb-garamond/500.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'EB Garamond', serif;
+  background: #f8f1de;
+  color: #2b2115;
+  overflow-x: hidden;
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Film-grain overlay: aged-paper feel, matches the original static design. */
+.grain-texture {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Postcard wall: each postcard keeps a fixed hand-placed tilt + vertical
+   offset from the reference design, restored on hover after the scale. */
+.postcard-r1 { transform: rotate(-4deg); margin-top: 6px; }
+.postcard-r2 { transform: rotate(3deg); margin-top: 22px; }
+.postcard-r3 { transform: rotate(-2deg); margin-top: 0; }
+.postcard-r4 { transform: rotate(4deg); margin-top: 16px; }
+.postcard-r5 { transform: rotate(-3deg); margin-top: 4px; }
+.postcard-r6 { transform: rotate(2deg); margin-top: 24px; }
+.postcard-r7 { transform: rotate(-5deg); margin-top: 10px; }
+.postcard-r8 { transform: rotate(3deg); margin-top: 0; }
+.postcard-r9 { transform: rotate(-2deg); margin-top: 20px; }
+.postcard-r10 { transform: rotate(4deg); margin-top: 8px; }
+.postcard-r11 { transform: rotate(-3deg); margin-top: 26px; }
+.postcard-r12 { transform: rotate(2deg); margin-top: 2px; }
+.postcard-r1:hover, .postcard-r2:hover, .postcard-r3:hover, .postcard-r4:hover,
+.postcard-r5:hover, .postcard-r6:hover, .postcard-r7:hover, .postcard-r8:hover,
+.postcard-r9:hover, .postcard-r10:hover, .postcard-r11:hover, .postcard-r12:hover {
+  scale: 1.045;
+  z-index: 2;
+}
