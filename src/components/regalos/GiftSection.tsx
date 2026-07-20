@@ -1,7 +1,6 @@
 import { WEDDING_CONFIG } from '../../config/wedding.config';
 import { AirmailFrame } from '../decor/AirmailFrame';
 import { PassportStamp } from '../decor/PassportStamp';
-import { PostalCornerBlock } from '../decor/PostalCornerBlock';
 import { RibbonBanner } from '../decor/RibbonBanner';
 import { TicketStackBadge } from '../decor/TicketStackBadge';
 import { TravelBadge } from '../decor/TravelBadge';
@@ -23,7 +22,6 @@ export function GiftSection() {
       }}
     >
       <AirmailFrame />
-      <PostalCornerBlock position="left-6 top-6" />
       <VerticalAirmailStripe side="right" />
 
       <PassportStamp

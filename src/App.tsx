@@ -4,7 +4,6 @@ import { DetallesSection } from './components/detalles/DetallesSection';
 import { Hero } from './components/hero/Hero';
 import { Itinerario } from './components/itinerario/Itinerario';
 import { GrainOverlay } from './components/layout/GrainOverlay';
-import { IntroFlyover } from './components/layout/IntroFlyover';
 import { Footer } from './components/layout/Footer';
 import { MusicPlayer } from './components/music/MusicPlayer';
 import { Nosotros } from './components/nosotros/Nosotros';
@@ -16,7 +15,6 @@ function App() {
   return (
     <>
       <GrainOverlay />
-      <IntroFlyover />
       <Hero />
       <Countdown />
       <Nosotros />

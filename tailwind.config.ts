@@ -53,12 +53,6 @@ export default {
           '90%': { opacity: '1' },
           '100%': { left: 'calc(100% - 16px)', opacity: '0' },
         },
-        introFly: {
-          '0%': { transform: 'translateX(-8vw) translateY(0)', opacity: '0' },
-          '12%': { opacity: '0.5' },
-          '85%': { opacity: '0.5' },
-          '100%': { transform: 'translateX(108vw) translateY(-18px)', opacity: '0' },
-        },
       },
       animation: {
         grainShift: 'grainShift 1.3s steps(4) infinite',
@@ -69,7 +63,6 @@ export default {
         fadeUp: 'fadeUp 1s ease forwards',
         scrollcue: 'scrollcue 1.8s ease-in-out infinite',
         flyacross: 'flyacross 4.5s ease-in-out infinite',
-        introFly: 'introFly 2.4s ease-in-out forwards',
       },
     },
   },

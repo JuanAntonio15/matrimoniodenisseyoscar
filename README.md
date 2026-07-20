@@ -1,6 +1,6 @@
 # Denisse & Oscar — Invitación de matrimonio
 
-Landing page de invitación matrimonio.
+Landing page de invitación matrimonio
 
 ## Stack
 
