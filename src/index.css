@@ -67,9 +67,17 @@ body {
 .postcard-r10 { transform: rotate(4deg); margin-top: 8px; }
 .postcard-r11 { transform: rotate(-3deg); margin-top: 26px; }
 .postcard-r12 { transform: rotate(2deg); margin-top: 2px; }
+/* Same specificity as .reveal, declared later: fully overrides its transition, so
+   opacity keeps fading in on reveal while hover gets its own elegant easing curve. */
+.postcard-r1, .postcard-r2, .postcard-r3, .postcard-r4,
+.postcard-r5, .postcard-r6, .postcard-r7, .postcard-r8,
+.postcard-r9, .postcard-r10, .postcard-r11, .postcard-r12 {
+  transition: opacity 0.9s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s ease;
+}
 .postcard-r1:hover, .postcard-r2:hover, .postcard-r3:hover, .postcard-r4:hover,
 .postcard-r5:hover, .postcard-r6:hover, .postcard-r7:hover, .postcard-r8:hover,
 .postcard-r9:hover, .postcard-r10:hover, .postcard-r11:hover, .postcard-r12:hover {
-  scale: 1.045;
+  scale: 1.07;
   z-index: 2;
+  box-shadow: 0 20px 34px -16px rgba(43, 33, 21, 0.45);
 }

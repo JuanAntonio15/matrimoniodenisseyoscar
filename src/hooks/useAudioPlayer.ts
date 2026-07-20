@@ -6,10 +6,14 @@ interface UseAudioPlayerResult {
   toggle: () => void;
 }
 
+const GESTURE_EVENTS = ['pointerdown', 'keydown', 'touchstart'] as const;
+
 /**
- * Encapsulates HTML5 <audio> play/pause state. Playback only ever starts
- * from `toggle()`, i.e. a user click — browsers block audible autoplay, so
- * we never attempt to `.play()` on mount.
+ * Encapsulates HTML5 <audio> play/pause state. Tries to start playback as
+ * soon as the element mounts; browsers that block unmuted autoplay reject
+ * that call, so we fall back to starting on the visitor's very first
+ * interaction with the page (click, key press or touch) instead of waiting
+ * specifically for the music button.
  */
 export function useAudioPlayer(): UseAudioPlayerResult {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -23,9 +27,29 @@ export function useAudioPlayer(): UseAudioPlayerResult {
     const handlePlay = () => setIsPlaying(true);
     audio.addEventListener('pause', handlePause);
     audio.addEventListener('play', handlePlay);
+
+    const removeGestureListeners = () => {
+      for (const event of GESTURE_EVENTS) window.removeEventListener(event, startOnGesture);
+    };
+    const startOnGesture = () => {
+      audio
+        .play()
+        .then(removeGestureListeners)
+        .catch(() => {
+          // Still blocked (or no valid source yet); listeners stay attached via { once: true }.
+        });
+    };
+
+    audio.play().catch(() => {
+      for (const event of GESTURE_EVENTS) {
+        window.addEventListener(event, startOnGesture, { once: true });
+      }
+    });
+
     return () => {
       audio.removeEventListener('pause', handlePause);
       audio.removeEventListener('play', handlePlay);
+      removeGestureListeners();
     };
   }, []);
 

@@ -12,7 +12,7 @@ export function PostcardItem({ postcard, delayMs }: PostcardItemProps) {
   return (
     <div
       ref={ref}
-      className={`reveal ${postcard.rotationClass} relative w-[42%] bg-[#fbf7ee] p-2.5 pb-[34px] shadow-[0_14px_30px_-14px_rgba(43,33,21,.4)] transition-shadow duration-300 sm:w-[190px] ${
+      className={`reveal ${postcard.rotationClass} relative w-[42%] bg-[#fbf7ee] p-2.5 pb-[34px] shadow-[0_14px_30px_-14px_rgba(43,33,21,.4)] sm:w-[190px] ${
         isVisible ? 'reveal-visible' : ''
       }`}
     >

@@ -11,47 +11,46 @@ import berlin from '../assets/images/postcards/berlin.jpg';
 import valparaiso from '../assets/images/postcards/valparaiso.jpg';
 import madrid from '../assets/images/postcards/madrid.jpg';
 import heroPhoto from '../assets/images/hero-photo.jpg';
-import type { BankAccount, ItineraryItem, NoticeItem, Postcard } from '../types/wedding.types';
+import type { BankAccount, ItineraryItem, NoticeItem, Postcard, WishlistItem } from '../types/wedding.types';
+import { zonedTimeToUtc } from '../lib/timezone';
 
-/**
- * ISO date with explicit -03:00 offset (Chile Continental) so the countdown
- * is correct regardless of the visitor's local timezone.
- */
-export const EVENT_DATE_ISO = '2026-11-27T18:00:00-03:00';
+export const EVENT_TIME_ZONE = 'America/Santiago';
+export const EVENT_DATE_LOCAL = '2026-11-27T17:30:00';
+export const EVENT_DATE = zonedTimeToUtc(EVENT_DATE_LOCAL, EVENT_TIME_ZONE);
 
 export const WEDDING_CONFIG = {
   coupleNames: { first: 'Denisse', second: 'Oscar' },
-  eventDateIso: EVENT_DATE_ISO,
-  eventDateDisplay: '27 de noviembre de 2026 · 18:00',
-  eventPlaceShort: 'Restaurante Algarrobo — Valparaíso, Chile',
+  eventDate: EVENT_DATE,
+  eventDateDisplay: '27 de noviembre de 2026 · 17:30',
+  eventPlaceShort: 'Restaurante Algarrobo',
   heroPhoto,
   heroPhotoAlt: 'Denisse y Oscar',
   heroEyebrow: 'Bitácora de Viaje',
   heroSubtitle: '30 años de ruta hasta encontrarnos',
   venue: {
     name: 'Restaurante Algarrobo',
-    address: 'Av. Carlos Alessandri 1510',
-    addressLine2: 'Algarrobo, San Antonio, Valparaíso',
-    boardingTime: 'Viernes 27 de noviembre · 18:00 hrs',
+    address: 'Av. Carlos Alessandri 1510, Algarrobo',
+    addressLine2: '',
+    boardingTime: 'Viernes 27 de noviembre · 17:30 hrs',
     mapsUrl:
       'https://www.google.com/maps/search/?api=1&query=Restaurante+Algarrobo+Av+Carlos+Alessandri+1510+Algarrobo+Chile',
   },
   dressCode: {
-    title: 'Dress code — Beach Formal',
+    title: 'Dress code: Formal',
     text:
-      'Ellos con corbata, ellas con vestimenta larga. En colores, el que quieran — menos blanco: reservado para la novia.',
+      'Ellos con corbata, ellas con vestimenta larga. La elección del color es libre, con excepción del blanco, reservado especialmente para la novia.',
   },
   countdownShout: {
     prefix: "Vamos pa' la playa, ",
-    highlight: 'no te quedes afuera',
+    highlight: 'no te quedes fuera',
     suffix: ' de la fiesta más grande de la primavera.',
   },
   nosotros: {
     eyebrow: 'Nuestra historia',
-    title: 'Lo que se riega, crece',
-    paragraphs: [
-      'Tal vez nos demoramos 30 años en encontrarnos, pero cuando lo hicimos, las aventuras y los buenos momentos no se han hecho esperar. Así que si algo está bueno, lo riegas y lo cuidas por lo que te quede en este mundo. Así que nos casamos.',
-      'Así que si recibes esto, es porque te queremos con nosotros para celebrar el amor y los buenos momentos. Porque la vida es una fiesta que un día termina, pero por mientras, vamos a caminarla juntos.',
+    title: 'Donde hay amor, echamos raíces',
+    paragraphs: [      
+      'Tal vez nos demoramos 30 años en encontrarnos, pero cuando finalmente lo hicimos, las aventuras, las risas y los buenos momentos no se hicieron esperar. Y como cuando algo está bueno hay que regarlo, cuidarlo y disfrutarlo por todo el tiempo que nos quede en este mundo… decidimos casarnos.',
+      'Si recibes esto, es porque te queremos con nosotros para celebrar el amor, la amistad y todos los buenos momentos que hacen que la vida valga la pena. Porque la vida es una fiesta que algún día termina, pero mientras tanto, queremos caminarla juntos.'
     ],
     wallEyebrow: 'Páginas de la bitácora',
     wallTitle: 'Algunas paradas en el camino',
@@ -60,16 +59,21 @@ export const WEDDING_CONFIG = {
     start: 'AQUÍ NOS ENCONTRAMOS',
     end: 'AQUÍ DECIMOS QUE SÍ',
   },
-  itineraryTitle: 'La ruta de la noche',
+  itineraryTitle: 'Próximo destino: celebrar',
   rsvpFormUrl: import.meta.env.VITE_RSVP_FORM_URL ?? '#',
-  giftsCopy:
-    "Nuestra fortaleza está completa, pero como tú quieres darnos un momento legendario, pues un pedacito de la luna de miel o una cuota del CAE bien nos vendría como anillo al dedo. (Anillo, dedo, matrimonio, que buena nos salió).",
+  wishlistTitleLines: ['Nuestra lista de', 'sueños para este Chile'] as [string, string],
+  wishlistRibbonLines: [
+    'Algunos románticos, otros absolutamente',
+    'necesarios, pero todos muy nosotros.',
+  ] as [string, string],
+  bankBoxTitle: 'Cuenta compartida no patriarcal',
+  giftsClosing: 'Gracias por ser parte de este viaje.',
   recuerdos: {
     text: 'Todo lo que capturen ese día es parte de nuestra bitácora. Súbelas a nuestra carpeta compartida para guardarlas todas juntas.',
     folderUrl: import.meta.env.VITE_PHOTOS_FOLDER_URL ?? '#',
   },
   rsvpShout: 'Confirma y ponte bonito, que esto empieza en un ratito.',
-  audioSrc: '/audio/wedding-song.mp3', // TODO: reemplazar por el MP3 definitivo cuando esté disponible.
+  audioSrc: '/audio/wedding-song.mp3',
   audioLabel: 'A Dónde Vamos — Morat',
   footer: {
     seal: 'D&O',
@@ -93,12 +97,12 @@ export const POSTCARDS: Postcard[] = [
 ];
 
 export const ITINERARY: ItineraryItem[] = [
-  { time: '17:30', event: 'Bienvenida de invitados' },
-  { time: '18:00', event: 'Ceremonia' },
-  { time: '19:00', event: 'Cóctel de celebración' },
-  { time: '21:00', event: 'Baile y fiesta' },
-  { time: '22:30', event: 'Show de medio tiempo' },
-  { time: '01:30', event: 'Último brindis' },
+  { time: '17:30', label: 'Punto de encuentro', event: 'Bienvenida de pasajeros' },
+  { time: '18:00', label: 'Comienza el viaje', event: 'Ceremonia' },
+  { time: '19:00', label: 'Primera escala', event: 'Cóctel de celebración' },
+  { time: '21:00', label: 'Próxima parada: la pista', event: 'Baile y fiesta' },
+  { time: '22:30', label: 'Escala sorpresa', event: 'Show de medio tiempo' },
+  { time: '01:30', label: 'Último brindis', event: 'Hasta el próximo viaje' },
 ];
 
 export const NOTICES: NoticeItem[] = [
@@ -108,18 +112,51 @@ export const NOTICES: NoticeItem[] = [
       'Queremos que nuestros invitados disfruten de una noche de fiesta y relajo, por lo que hemos reservado este evento exclusivamente para adultos.',
   },
   {
-    title: 'Half time show',
+    title: 'Escala Sorpresa',
     text:
-      'Durante el evento habrá un acto secreto de medio tiempo, así que necesitamos que todos lleguen con una polera de fútbol puesta — sin importar el equipo.',
+      'En algún momento de la noche tendremos una parada inesperada. Solo les adelantamos una cosa: traigan su polera de fútbol favorita, sin importar los colores ni el equipo, acá todos jugamos local.',
+  },
+];
+
+export const WISHLIST: WishlistItem[] = [
+  {
+    iconId: 'soccer',
+    text: 'Entradas para el Clásico Universitario (barras separadas). Para cada uno! + Un Kapo y una Serranita.',
+    price: '$41.291',
+  },
+  {
+    iconId: 'gas',
+    text: 'Un estanque para la Gladys, así se llama nuestro auto (Gracias Kast-igo).',
+    price: '$51.880',
+  },
+  {
+    iconId: 'hourglass',
+    text: 'Una máquina del tiempo para evitar el gobierno actual.',
+    price: '$60.999',
+  },
+  {
+    iconId: 'graduation',
+    text: 'Una cuota del CAE (Gracias Kast-igo 2).',
+    price: '$70.001',
+  },
+  {
+    iconId: 'house',
+    text: 'Un empujoncito para nuestro emprendimiento de estar "Más Cerquita".',
+    price: '$80.666',
+  },
+  {
+    iconId: 'plane',
+    text: 'Si esta invitación llegó a Farkas.',
+    price: 'Un chilion de dólares',
   },
 ];
 
 export const BANK_ACCOUNT: BankAccount = {
   titular: 'Oscar Andrés Vera Álamos',
-  rut: '18.624.497-4',
-  banco: 'Santander',
-  tipoCuenta: 'Cuenta Corriente',
-  numeroCuenta: '0 000 72 80158 0',
+  rut: '18624497-4',
+  banco: 'Prepago Tenpo',
+  tipoCuenta: 'Cuenta Vista',
+  numeroCuenta: '11118624497',
   email: 'overaalamos@gmail.com',
 };
 

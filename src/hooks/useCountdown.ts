@@ -11,8 +11,8 @@ function computeRemaining(targetMs: number): CountdownValue {
   };
 }
 
-export function useCountdown(targetIso: string): CountdownValue {
-  const targetMs = new Date(targetIso).getTime();
+export function useCountdown(target: Date): CountdownValue {
+  const targetMs = target.getTime();
   const [value, setValue] = useState<CountdownValue>(() => computeRemaining(targetMs));
 
   useEffect(() => {

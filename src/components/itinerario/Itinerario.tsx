@@ -21,7 +21,7 @@ export function Itinerario() {
         rotation="rotate(10deg)"
       />
 
-      <span className="block font-stamp text-[11px] font-bold uppercase tracking-[0.3em] text-cognac">Itinerario</span>
+      <span className="block font-stamp text-[11px] font-bold uppercase tracking-[0.3em] text-cognac">Mood Viaje</span>
       <h2 className="my-4 mb-12 font-display text-[clamp(28px,5.2vw,44px)] font-semibold italic text-navy">
         {WEDDING_CONFIG.itineraryTitle}
       </h2>

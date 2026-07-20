@@ -5,7 +5,7 @@ import { CompassIcon } from '../decor/CompassIcon';
 import { Plaque } from './Plaque';
 
 export function Countdown() {
-  const { days, hours, minutes, seconds } = useCountdown(WEDDING_CONFIG.eventDateIso);
+  const { days, hours, minutes, seconds } = useCountdown(WEDDING_CONFIG.eventDate);
   const shout = useReveal<HTMLParagraphElement>();
   const plaques = useReveal<HTMLDivElement>();
 
@@ -18,7 +18,9 @@ export function Countdown() {
         backgroundColor: '#F1E4C0',
       }}
     >
-      <CompassIcon className="pointer-events-none absolute left-1/2 top-1/2 h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 opacity-5 animate-spinGhost" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 opacity-5">
+        <CompassIcon className="h-full w-full animate-spinGhost" />
+      </div>
 
       <p
         ref={shout.ref}

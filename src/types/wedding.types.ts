@@ -14,6 +14,7 @@ export interface Postcard {
 
 export interface ItineraryItem {
   time: string;
+  label: string;
   event: string;
 }
 
@@ -29,4 +30,12 @@ export interface BankAccount {
   tipoCuenta: string;
   numeroCuenta: string;
   email: string;
+}
+
+export type WishlistIconId = 'soccer' | 'gas' | 'hourglass' | 'graduation' | 'house' | 'plane';
+
+export interface WishlistItem {
+  iconId: WishlistIconId;
+  text: string;
+  price: string;
 }
