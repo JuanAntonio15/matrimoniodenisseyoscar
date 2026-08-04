@@ -162,10 +162,11 @@ export const BANK_ACCOUNT: BankAccount = {
 
 export function formatBankAccountForClipboard(account: BankAccount): string {
   return [
-    `Titular: ${account.titular}`,
+    `Nombre: OSCAR ANDRES VERA ALAMOS`,
     `RUT: ${account.rut}`,
-    `Banco: ${account.banco}`,
-    `${account.tipoCuenta}: ${account.numeroCuenta}`,
-    `Email: ${account.email}`,
+    `Banco ${account.banco}`,
+    `Tipo de cuenta: ${account.tipoCuenta}`,
+    `Numero de cuenta: ${account.numeroCuenta}`,
+    `Correo: ${account.email}`,
   ].join('\n');
 }
