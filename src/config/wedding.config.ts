@@ -156,7 +156,7 @@ export const BANK_ACCOUNT: BankAccount = {
   rut: '18624497-4',
   banco: 'Prepago Tenpo',
   tipoCuenta: 'Cuenta Vista',
-  numeroCuenta: '11118624497',
+  numeroCuenta: '111118624497',
   email: 'overaalamos@gmail.com',
 };
 
